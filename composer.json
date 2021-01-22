@@ -9,7 +9,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Bigmom\\Auth\\Providers\\AuthServiceProvider"
+                "Bigmom\\Auth\\Providers\\BigmomAuthServiceProvider"
             ]
         }
     },
