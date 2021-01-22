@@ -43,7 +43,15 @@ class AddUserPermission
             throw new ValidationException($validator, response("Model $model not found.", 404));
         }
 
-        $user = $model::where(config('bigmom-auth.user-identifier', 'email'), $input['identifier'])->firstOrFail();
-        $this->user = $user;
+        $field = config('bigmom-auth.user-identifier');
+        $user = $model::where($field, $input['identifier'])->first();
+        if ($user) {
+            $this->user = $user;
+        } else {
+            $tableName = (new $model)->getTable();
+            Validator::make($input, [
+                'identifier' => ["exists:$tableName,$field"]
+            ])->validate();
+        }
     }
 }
