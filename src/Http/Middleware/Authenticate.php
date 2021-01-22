@@ -16,7 +16,9 @@ class Authenticate
     public function handle($request, Closure $next)
     {
         if (!Auth::guard('bigmom')->user()) {
-            return redirect()->route('bigmom-auth.getLogin');
+            return redirect()->route('bigmom-auth.getLogin', [
+                'requested' => $request->url(),
+            ]);
         }
 
         return $next($request);

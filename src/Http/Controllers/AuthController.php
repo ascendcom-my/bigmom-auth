@@ -32,9 +32,13 @@ class AuthController extends Controller
             return response('attempt is not a method.');
         }
 
+        $route = route('bigmom-auth.getHome');
+        if ($request->has('requested')) {
+            $route = $request->input('requested');
+        }
+
         return Auth::guard('bigmom')->user()
-            ? redirect()
-                ->route('bigmom-auth.getHome')
+            ? redirect($route)
             : redirect()
                 ->back()
                 ->withErrors('Invalid credentials.');
@@ -47,13 +51,15 @@ class AuthController extends Controller
             : response("Please publish this package's vendor files first.");
     }
 
-    public function postLogout()
+    public function postLogout(Request $request)
     {
         if (Auth::guard('bigmom')->check()) {
             if (method_exists(Auth::guard('bigmom'), 'logout')) {
                 Auth::guard('bigmom')->logout();
                 return redirect()
-                    ->route('bigmom-auth.getLogin');
+                    ->route('bigmom-auth.getLogin', [
+                        'requested' => $request->url(),
+                    ]);
             } else {
                 return response('logout is not a method.');
             }

@@ -25,7 +25,7 @@
           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $header }} - {{ config('app.name', 'Laravel') }}
           </h2>
-          <div>
+          <div class="flex">
             {{ $headerRightSide ?? '' }}
           </div>
         </div>
