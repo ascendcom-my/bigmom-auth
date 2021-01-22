@@ -57,9 +57,7 @@ class AuthController extends Controller
             if (method_exists(Auth::guard('bigmom'), 'logout')) {
                 Auth::guard('bigmom')->logout();
                 return redirect()
-                    ->route('bigmom-auth.getLogin', [
-                        'requested' => $request->url(),
-                    ]);
+                    ->route('bigmom-auth.getLogin');
             } else {
                 return response('logout is not a method.');
             }
