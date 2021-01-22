@@ -1,0 +1,21 @@
+{
+    "name": "bigmom/auth",
+    "description": "Centralized auth for other bigmom packages.",
+    "autoload": {
+        "psr-4": {
+            "Bigmom\\Auth\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bigmom\\Auth\\Providers\\AuthServiceProvider"
+            ]
+        }
+    },
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+    	"laravel/framework": "^8.0"
+    }
+}
