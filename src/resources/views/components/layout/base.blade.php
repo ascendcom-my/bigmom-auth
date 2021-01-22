@@ -18,6 +18,7 @@
     @stack('script')
   </head>
   <body class="font-sans antialiased">
+    <!--Mozilla FOUC bug-->
     <script>0</script>
     <div class="min-h-screen bg-gray-100">
       <!-- Page Heading -->
