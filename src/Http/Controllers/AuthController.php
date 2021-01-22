@@ -40,6 +40,13 @@ class AuthController extends Controller
                 ->withErrors('Invalid credentials.');
     }
 
+    public function getLogout()
+    {
+        return View::exists('vendor.bigmom.auth.logout')
+            ? view('vendor.bigmom.auth.logout')
+            : response("Please publish this package's vendor files first.");
+    }
+
     public function postLogout()
     {
         if (Auth::guard('bigmom')->check()) {

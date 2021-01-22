@@ -23,12 +23,10 @@ class EnsureUserIsAuthorized
             return $next($request);
         } else {
             if ($permission == 'auth-access') {
-                Auth::guard('bigmom')->logout();
-                return redirect()
-                    ->route('bigmom-auth.getLogin')
-                    ->withErrors('Unauthorized.', 'User is not authorized to access this link.');
+                abort(403, 'User is not authorized to access this link. Please access ' . route('bigmom-auth.getLogout') . ' to log out.');
+            } else {
+                abort(403, "User is not authorized to access this link. Are you sure you are accessing the correct link?");
             }
-            abort(403, 'User is not authorized to access this link.');
         }
     }
 }
