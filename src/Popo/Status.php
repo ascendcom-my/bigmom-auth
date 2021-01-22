@@ -40,19 +40,4 @@ class Status
             'extra' => $this->extra(),
         ];
     }
-
-    public function setCode(int $code)
-    {
-        $this->code = $code;
-    }
-
-    public function setMessage(string $message)
-    {
-        $this->message = $message;
-    }
-
-    public function setExtra($extra)
-    {
-        $this->extra = $extra;
-    }
 }
