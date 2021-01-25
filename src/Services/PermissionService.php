@@ -10,14 +10,16 @@ class PermissionService
 {
     public function allows(User $user, string $permission)
     {
+        $permissions = explode('||', $permission);
+        
         return in_array($user->{config('bigmom-auth.user-identifier', 'email')}, config('bigmom-auth.superusers', []))
-            || BigmomUserPermission::where('permission', $permission)
+            || BigmomUserPermission::whereIn('permission', $permissions)
                 ->where('user_type', get_class($user))
                 ->where('user_id', '*')
                 ->exists()
             || BigmomUserPermission::where('user_type', get_class($user))
                 ->where('user_id', $user->id)
-                ->where('permission', $permission)
+                ->whereIn('permission', $permissions)
                 ->exists();
     }
 
