@@ -1,3 +1,3 @@
-<x-poll::button.link.colorless {{ $attributes->merge(['class' => 'bg-yellow-400 text-black font-bold hover:bg-yellow-600']) }}>
+<x-bigmom-auth::button.link.colorless {{ $attributes->merge(['class' => 'bg-yellow-400 text-black font-bold hover:bg-yellow-600']) }}>
     {{ $slot }}
-</x-poll::button.link.colorless>
+</x-bigmom-auth::button.link.colorless>
