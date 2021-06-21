@@ -32,6 +32,16 @@ class PermissionService
     {
         $packages = config('bigmom-auth.packages', []);
 
+        $checked = [];
+
+        foreach ($packages as $index => $package) {
+            if (in_array($package['name'], $checked)) {
+                unset($packages[$index]);
+            } else {
+                array_push($checked, $package['name']);
+            }
+        }
+
         if ($user) {
             foreach ($packages as $indexOne => $package) {
                 foreach ($package['routes'] as $indexTwo => $route) {
